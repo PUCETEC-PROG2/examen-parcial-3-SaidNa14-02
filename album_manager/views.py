@@ -42,19 +42,19 @@ def add_artist(request):
     return render(request, 'artist_form.html', {'form': form})
 
 def edit_artist(request, artist_id):
-    artist = Artist.objects.get(pk=artist_id)  # Cambiar nombre para consistencia
+    artist = Artist.objects.get(pk=artist_id)  
     if request.method == 'POST':
         form = ArtistForm(request.POST, request.FILES, instance=artist)
         if form.is_valid():
-            form.save()  # Agregar paréntesis
-            return redirect('album_manager:index')  # Corregir redirección
+            form.save()  
+            return redirect('album_manager:index')  
     else:
         form = ArtistForm(instance=artist)
     return render(request, 'artist_form.html', {'form': form})
     
 def delete_artist(request, artist_id):
     artist = Artist.objects.get(pk=artist_id)
-    artist.delete()  # Agregar paréntesis
+    artist.delete()  
     return redirect('album_manager:index')
 
 ################### Vistas de Album #####################
@@ -70,12 +70,12 @@ def add_album(request):
     return render(request, 'album_form.html', {'form': form})
 
 def edit_album(request, album_id):
-    album = Album.objects.get(pk=album_id)  # Cambiar nombre para consistencia
+    album = Album.objects.get(pk=album_id) 
     if request.method == 'POST':
         form = AlbumForm(request.POST, request.FILES, instance=album)
         if form.is_valid():
             form.save()
-            return redirect('album_manager:index')  # Corregir redirección
+            return redirect('album_manager:index')   
     else:
         form = AlbumForm(instance=album)
     return render(request, 'album_form.html', {'form': form})
