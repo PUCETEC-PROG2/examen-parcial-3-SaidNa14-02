@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ trainer | capfirst }}{% endblock title %}
+{% block content %}
+    <h1>Descripción del album:<strong> {{album.name}}</strong></h1>
+    <h3>Álbum</h3>
+    <ul>
+        <img src="{{ album.cover.url }}" alt="{{ trainer | capfirst }}" style="width: 30%;">
+        <br>
+        <li>Titulo: {{ album.title }}</li>
+        <li>Fecha de lanzamiento: {{ album.release_year }}</li>
+        <li>Género: {{ album.gender }}</li>
+        <li>Artista: {{ album.artist.name }}</li>
+    </ul>
+{% endblock content %}

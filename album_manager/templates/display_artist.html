@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ trainer | capfirst }}{% endblock title %}
+{% block content %}
+    <h1>Descripción del Artista:<strong> {{artist.name}}</strong></h1>
+    <ul>
+        <br>
+        <li>Nombre: {{ artist.name }}</li>
+        <li>País: {{ artist.country }}</li>
+    </ul>
+{% endblock content %}

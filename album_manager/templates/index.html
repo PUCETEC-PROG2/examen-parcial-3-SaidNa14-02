@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Página Principal{% endblock title %}
+
+{% block content %}
+    <!-- Sección de Álbumes -->
+    <div class="container mt-4">
+        <h1>Álbumes</h1>
+        <a href="{% url 'album_manager:add_album' %}" class="btn btn-primary mb-4">
+            <i class="fas fa-plus"></i> Añadir Álbum
+        </a>
+        
+        <div class="row">
+            {% for album in albums %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ album.cover.url }}" class="card-img-top" alt="{{ album.title }}" style="height: 200px; object-fit: cover;">                            
+                        <h5 class="card-title">{{ album.title|capfirst }}</h5>
+                            <p class="card-text">Artista: {{ album.artist.name }}</p>
+                            <div class="btn-group">
+                                <a href="{% url 'album_manager:display_album' album.id %}" class="btn btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{% url 'album_manager:edit_album' album.id %}" class="btn btn-warning">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                                <a href="{% url 'album_manager:delete_album' album.id %}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center">No hay álbumes disponibles.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Sección de Artistas -->
+    <div class="container mt-5">
+        <h1>Artistas</h1>
+        <a href="{% url 'album_manager:add_artist' %}" class="btn btn-primary mb-4">
+            <i class="fas fa-plus"></i> Añadir Artista
+        </a>
+        
+        <div class="row">
+            {% for artist in artists %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artist.name|capfirst }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ artist.country }}</h6>
+                            <div class="btn-group mt-3">
+                                <a href="{% url 'album_manager:display_artist' artist.id %}" class="btn btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{% url 'album_manager:edit_artist' artist.id %}" class="btn btn-warning">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                                <a href="{% url 'album_manager:delete_artist' artist.id %}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center">No hay artistas disponibles.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
